@@ -76,6 +76,7 @@ masterPlay.addEventListener('click', ()=>{
         gif.style.opacity = 0;
     }
 })
+
 // Listen to Events
 audioElement.addEventListener('timeupdate', ()=>{ 
     // Update Seekbar
@@ -97,11 +98,12 @@ const makeAllPlays = ()=>{
 Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
     element.addEventListener('click', (e)=>{ 
         makeAllPlays();
-        songIndex = parseInt(e.target.id);
+        songIndex = parseInt(e.target.id - 1);
         e.target.classList.remove('fa-play-circle');
         e.target.classList.add('fa-pause-circle');
-        audioElement.src = `songs/${songIndex+1}.mp3`;
-        masterSongName.innerText = songs[songIndex].songName;
+       // audioElement.src = `songs/${songIndex}.mp3`;
+        audioElement.src = songs[songIndex+1].filePath;
+        masterSongName.innerText = songs[songIndex+1].songName;
         audioElement.currentTime = 0;
         audioElement.play();
         gif.style.opacity = 1;
